@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Submit Feedback | CITE Secure</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
+    
+    body {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      background: radial-gradient(circle at top, #3a3a3a 0, #121212 55%, #000 100%);
+      color: #f5f5f5; overflow: hidden;
+    }
+
+    .feedback-card {
+      width: 100%; max-width: 620px; padding: 35px;
+      background: rgba(18, 18, 18, 0.98); border-radius: 24px; border: 1px solid #333;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+    }
+
+    .header-area {
+      display: flex; align-items: center; gap: 18px;
+      margin-bottom: 25px; border-bottom: 1px solid #222; padding-bottom: 18px;
+    }
+
+    .logo-img { height: 55px; width: auto; filter: drop-shadow(0 0 5px rgba(255,255,255,0.1)); }
+    .school-info p { font-size: 0.7rem; color: #666; text-transform: uppercase; font-weight: 700; letter-spacing: 1.2px; }
+    .school-info h1 { font-size: 1.2rem; font-weight: 800; color: #f5f5f5; line-height: 1.2; }
+
+    .sentiment-group { margin-bottom: 30px; text-align: center; }
+    .sentiment-label { display: block; font-size: 0.9rem; color: #aaa; margin-bottom: 20px; font-weight: 500; }
+    
+    .sentiment-options { display: flex; justify-content: center; align-items: center; gap: 20px; }
+    
+    .sentiment-btn {
+      cursor: pointer; transition: all 0.3s ease;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0.35;
+    }
+
+    .sentiment-btn span { font-size: 2.2rem; }
+
+    .btn-happy:hover, .btn-happy.active { opacity: 1; filter: drop-shadow(0 0 12px #ffcc00); }
+    .btn-love:hover, .btn-love.active { opacity: 1; filter: drop-shadow(0 0 12px #ff4d4d); }
+    .btn-plead:hover, .btn-plead.active { opacity: 1; filter: drop-shadow(0 0 12px #00d4ff); }
+    .btn-sad:hover, .btn-sad.active { opacity: 1; filter: drop-shadow(0 0 12px #8e8e8e); }
+    .btn-angry:hover, .btn-angry.active { opacity: 1; filter: drop-shadow(0 0 12px #ff0000); }
+
+    .sentiment-btn:hover span { transform: scale(1.1); }
+    .sentiment-btn.active span { transform: scale(1.15); }
+
+
+    .input-group { margin-bottom: 25px; position: relative; text-align: left; }
+    label.desc-label { display: block; font-size: 0.9rem; color: #888; margin-bottom: 10px; font-weight: 500; }
+
+    .feedback-textarea {
+      width: 100%; min-height: 170px; padding: 20px; border-radius: 14px;
+      border: 1px solid #333; background: #080808; color: #fff;
+      font-size: 1rem; line-height: 1.6; outline: none; resize: none;
+      transition: all 0.2s ease;
+    }
+    .feedback-textarea:focus { border-color: #f5f5f5; }
+
+    .counter { position: absolute; bottom: 12px; right: 18px; font-size: 0.75rem; color: #444; font-weight: 700; }
+
+    .ai-monitor {
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(255, 255, 255, 0.02); padding: 12px 18px; border-radius: 12px;
+      border: 1px solid #222; margin-bottom: 25px;
+    }
+    .pulse-dot { width: 7px; height: 7px; background: #00ff88; border-radius: 50%; box-shadow: 0 0 6px #00ff88; animation: pulse 1.5s infinite; }
+    .ai-text { font-size: 0.7rem; color: #666; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+
+    .footer-actions { display: flex; justify-content: space-between; align-items: center; }
+    .btn-submit { padding: 15px 40px; border-radius: 10px; border: none; background: #f5f5f5; color: #000; font-weight: 800; text-transform: uppercase; font-size: 0.85rem; cursor: pointer; transition: 0.2s; }
+    .btn-submit:hover { background: #fff; transform: translateY(-2px); }
+    .cancel-link { color: #555; text-decoration: none; font-size: 0.85rem; font-weight: 600; }
+  </style>
+</head>
+<body>
+
+  <main class="feedback-card">
+    <div class="header-area">
+      <img src="logo.png" alt="Logo" class="logo-img" onerror="this.style.display='none'">
+      <div class="school-info">
+        <p>PHINMA - University of Pangasinan</p>
+        <h1>CITE Feedback Portal</h1>
+      </div>
+    </div>
+
+    <form onsubmit="event.preventDefault(); alert('Feedback Submitted Successfully'); window.location.href='index.html';">
+      
+      <div class="sentiment-group">
+        <label class="sentiment-label">How do you feel today?</label>
+        <div class="sentiment-options">
+          <div class="sentiment-btn btn-happy" onclick="setSentiment(this, 'happy')"><span>😊</span></div>
+          <div class="sentiment-btn btn-love" onclick="setSentiment(this, 'love')"><span>😍</span></div>
+          <div class="sentiment-btn btn-plead" onclick="setSentiment(this, 'pleasing')"><span>🥺</span></div>
+          <div class="sentiment-btn btn-sad" onclick="setSentiment(this, 'sad')"><span>😔</span></div>
+          <div class="sentiment-btn btn-angry" onclick="setSentiment(this, 'angry')"><span>😠</span></div>
+        </div>
+        <input type="hidden" id="selected-sentiment" required>
+      </div>
+
+      <div class="input-group">
+        <label for="feedback" class="desc-label">Describe your concern or suggestion</label>
+        <textarea id="feedback" class="feedback-textarea" placeholder="Start typing..." maxlength="500" required></textarea>
+        <div class="counter"><span id="char-count">0</span> / 500</div>
+      </div>
+
+      <div class="ai-monitor">
+        <div class="pulse-dot"></div>
+        <div class="ai-text">RNN Anomaly Detection Active</div>
+      </div>
+
+      <div class="footer-actions">
+        <a href="index.html" class="cancel-link">Cancel</a>
+        <button type="submit" class="btn-submit">Submit</button>
+      </div>
+    </form>
+  </main>
+
+  <script>
+    function setSentiment(el, val) {
+      document.querySelectorAll('.sentiment-btn').forEach(btn => btn.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('selected-sentiment').value = val;
+    }
+
+    const textarea = document.getElementById('feedback');
+    const charCount = document.getElementById('char-count');
+    textarea.addEventListener('input', () => {
+      charCount.textContent = textarea.value.length;
+      charCount.style.color = textarea.value.length >= 450 ? "#ff5555" : "#444";
+    });
+  </script>
+
+</body>
+</html>

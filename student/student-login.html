@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Student Login | CITE Secure Feedback</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
+    
+    body {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      background: radial-gradient(circle at top, #3a3a3a 0, #121212 55%, #000 100%);
+      color: #f5f5f5; overflow: hidden;
+    }
+
+    .login-card {
+      width: 100%; max-width: 440px; padding: 50px 40px;
+      background: rgba(18, 18, 18, 0.98); border-radius: 20px; border: 1px solid #333;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8); text-align: center;
+    }
+
+    .logo-mini {
+      height: 75px; margin-bottom: 24px;
+      filter: drop-shadow(0 0 8px rgba(255,255,255,0.1));
+    }
+
+    .school-title {
+      font-size: 0.75rem; color: #888; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;
+    }
+
+    h2 {
+      font-size: 2rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 40px;
+    }
+
+    .form-group { text-align: left; margin-bottom: 28px; }
+    
+    label {
+      font-size: 0.75rem; font-weight: 700; color: #aaa;
+      display: block; margin-bottom: 10px; text-transform: uppercase;
+    }
+
+    .input-field {
+      width: 100%; padding: 16px 20px; border-radius: 12px; border: 1px solid #333;
+      background: #080808; color: #fff; font-size: 1rem; outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .input-field:focus {
+      border-color: #f5f5f5; background: #0c0c0c;
+    }
+
+
+    .btn-otp {
+      display: block; width: 100%; padding: 18px; border-radius: 12px; border: none;
+      background: #f5f5f5; color: #000; font-weight: 800;
+      text-transform: uppercase; font-size: 0.9rem; cursor: pointer;
+      transition: all 0.2s ease; margin-bottom: 10px;
+      text-decoration: none; text-align: center;
+    }
+
+    .btn-otp:hover {
+      background: #ffffff; transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+
+    .back-link {
+      display: inline-block; margin-top: 30px; font-size: 0.85rem;
+      color: #555; text-decoration: none; transition: 0.2s;
+    }
+
+    .back-link:hover { color: #f5f5f5; }
+  </style>
+</head>
+<body>
+
+  <main class="login-card">
+    <img src="logo.png" alt="CITE" class="logo-mini" onerror="this.style.opacity='0.5'">
+    
+    <p class="school-title">PHINMA - University of Pangasinan</p>
+    <h2>Student Login</h2>
+
+    <form id="otp-form" onsubmit="event.preventDefault(); window.location.href='otp-verify.html';">
+      <div class="form-group">
+        <label for="email">PHINMA Email</label>
+        <input 
+          type="email" 
+          id="email" 
+          class="input-field" 
+          placeholder="student.up@phinmaed.com" 
+          required
+        >
+      </div>
+
+      <button type="submit" class="btn-otp">Request OTP</button>
+    </form>
+
+    <a href="../index.html" class="back-link">← Return to Portal</a>
+  </main>
+
+</body>
+</html>
